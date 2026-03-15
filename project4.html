@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="sq">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Projekt | Saja Electric</title>
+
+    <link rel="stylesheet" href="css.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <style>
+      /* PAGE TITLE */
+
+      .project-hero {
+        padding: 140px 20px 40px;
+        text-align: center;
+        max-width: 900px;
+        margin: auto;
+      }
+
+      .project-hero h1 {
+        font-size: 36px;
+        margin-bottom: 15px;
+      }
+
+      .project-hero p {
+        color: #666;
+        font-size: 16px;
+        line-height: 1.6;
+      }
+
+      /* BACK BUTTON */
+
+      .back-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 30px;
+        padding: 10px 18px;
+        border-radius: 8px;
+        background: #000;
+        color: #fff;
+        text-decoration: none;
+        font-weight: 600;
+        transition: 0.25s;
+      }
+
+      .back-btn:hover {
+        transform: translateY(-2px);
+      }
+
+      /* GALLERY */
+
+      .project-gallery {
+        padding: 40px 20px 100px;
+      }
+
+      .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+        max-width: 1400px;
+        margin: auto;
+      }
+
+      .gallery-grid img {
+        width: 100%;
+        height: 280px;
+        object-fit: cover;
+        border-radius: 12px;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      .gallery-grid img:hover {
+        transform: scale(1.05);
+      }
+
+      /* LIGHTBOX */
+
+      .lightbox {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.85);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+      }
+
+      .lightbox img {
+        max-width: 90%;
+        max-height: 85%;
+        border-radius: 10px;
+      }
+
+      .lightbox.active {
+        display: flex;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- HEADER -->
+
+    <header class="header">
+      <div class="container nav">
+        <button id="burgerBtn" class="burger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <img src="images/LOGO-1 copy.png" class="logo" />
+      </div>
+    </header>
+
+    <!-- SIDE MENU -->
+
+    <nav id="sideMenu" class="side-menu">
+      <a href="index.html#home">Home</a>
+      <a href="index.html#services">Services</a>
+      <a href="index.html#projects">Projects</a>
+      <a href="index.html#about">About</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+
+    <main id="mainContent">
+      <section class="project-hero">
+        <a href="index.html#projects" class="back-btn">
+          <i class="fa-solid fa-arrow-left"></i>
+          Kthehu te Projektet
+        </a>
+
+        <h1>Projekt Instalimi Elektrik</h1>
+
+        <p>
+          Ky projekt përfshin instalime elektrike profesionale për një objekt
+          rezidencial. Punimet përfshijnë instalim kabllimi, panel elektrik,
+          ndriçim dhe testim të sistemit për funksionim dhe siguri maksimale.
+        </p>
+      </section>
+
+      <section class="project-gallery">
+        <div class="gallery-grid">
+          <img src="images/martin-adams-sq1dNSxyGdU-unsplash.jpg" />
+          <img src="images/martin-adams-sq1dNSxyGdU-unsplash.jpg" />
+          <img src="images/martin-adams-sq1dNSxyGdU-unsplash.jpg" />
+          <img src="images/martin-adams-sq1dNSxyGdU-unsplash.jpg" />
+          <img src="images/martin-adams-sq1dNSxyGdU-unsplash.jpg" />
+          <img src="images/martin-adams-sq1dNSxyGdU-unsplash.jpg" />
+        </div>
+      </section>
+    </main>
+
+    <!-- LIGHTBOX -->
+
+    <div class="lightbox" id="lightbox">
+      <img id="lightbox-img" />
+    </div>
+
+    <!-- FOOTER -->
+
+    <footer class="footer">
+      <div class="container footer-grid">
+        <div class="col">
+          <img src="images/LOGO-1 copy.png" class="footer-logo" />
+          <p>
+            Kompani profesionale për instalime dhe projekte elektrike. Siguri
+            dhe cilësi në çdo projekt.
+          </p>
+        </div>
+
+        <div class="col">
+          <h4>Kontakt</h4>
+          <p><i class="fa-solid fa-phone"></i> +355 XXX XXX XXX</p>
+          <p><i class="fa-solid fa-envelope"></i> info@sajaelectric.com</p>
+          <p><i class="fa-solid fa-location-dot"></i> Tiranë, Shqipëri</p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      /* LIGHTBOX SCRIPT */
+
+      const images = document.querySelectorAll(".gallery-grid img");
+      const lightbox = document.getElementById("lightbox");
+      const lightboxImg = document.getElementById("lightbox-img");
+
+      images.forEach((img) => {
+        img.addEventListener("click", () => {
+          lightbox.classList.add("active");
+          lightboxImg.src = img.src;
+        });
+      });
+
+      lightbox.addEventListener("click", () => {
+        lightbox.classList.remove("active");
+      });
+    </script>
+    <script src="javajs.js"></script>
+  </body>
+</html>
