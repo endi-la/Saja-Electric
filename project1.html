@@ -14,9 +14,7 @@
     />
 
     <style>
-      /* ========================= */
-      /* PROJECT HERO */
-      /* ========================= */
+      /* HERO */
 
       .project-hero {
         padding: 140px 20px 40px;
@@ -49,28 +47,22 @@
         color: #fff;
         text-decoration: none;
         font-weight: 600;
-        transition: 0.25s;
       }
 
-      .back-btn:hover {
-        transform: translateY(-2px);
-      }
-
-      /* ========================= */
-      /* PROJECT GALLERY */
-      /* ========================= */
+      /* GALLERY */
 
       .project-gallery {
         padding: 40px 20px 100px;
       }
 
+      /* DESKTOP 3x2 */
+
       .gallery-grid {
-        max-width: 1200px;
+        max-width: 1100px;
+
         margin: auto;
 
         display: grid;
-
-        /* DESKTOP = 3 columns */
 
         grid-template-columns: repeat(3, 1fr);
 
@@ -79,7 +71,9 @@
 
       .gallery-grid img {
         width: 100%;
+
         height: 260px;
+
         object-fit: cover;
 
         border-radius: 14px;
@@ -93,21 +87,9 @@
         transform: scale(1.05);
       }
 
-      /* ========================= */
-      /* TABLET */
-      /* ========================= */
+      /* MOBILE 2x2x2 */
 
-      @media (max-width: 900px) {
-        .gallery-grid {
-          grid-template-columns: repeat(2, 1fr);
-        }
-      }
-
-      /* ========================= */
-      /* MOBILE */
-      /* ========================= */
-
-      @media (max-width: 600px) {
+      @media (max-width: 768px) {
         .gallery-grid {
           grid-template-columns: repeat(2, 1fr);
 
@@ -119,12 +101,11 @@
         }
       }
 
-      /* ========================= */
       /* LIGHTBOX */
-      /* ========================= */
 
       .lightbox {
         position: fixed;
+
         top: 0;
         left: 0;
 
@@ -155,7 +136,7 @@
   </head>
 
   <body>
-    <!-- HEADER -->
+    <!-- HEADER (IDENTICAL TO INDEX) -->
 
     <header class="header">
       <div class="container nav">
@@ -165,18 +146,18 @@
           <span></span>
         </button>
 
-        <img src="images/LOGO-1 copy.png" class="logo" />
+        <img src="images/LOGO-1 copy.png" alt="Saja Electric" class="logo" />
       </div>
     </header>
 
     <!-- SIDE MENU -->
 
     <nav id="sideMenu" class="side-menu">
-      <a href="index.html#home">HOME</a>
-      <a href="index.html#services">SERVICES</a>
-      <a href="index.html#projects">PROJECTS</a>
-      <a href="index.html#about">ABOUT</a>
-      <a href="index.html#contact">CONTACT</a>
+      <a href="index.html#home" style="color: #000">HOME</a>
+      <a href="index.html#services" style="color: #000">SERVICES</a>
+      <a href="index.html#projects" style="color: #000">PROJECTS</a>
+      <a href="index.html#about" style="color: #000">ABOUT US</a>
+      <a href="index.html#contact" style="color: #000">CONTACT</a>
     </nav>
 
     <main id="mainContent">
@@ -214,7 +195,7 @@
       <img id="lightbox-img" />
     </div>
 
-    <!-- FOOTER -->
+    <!-- FOOTER (IDENTICAL TO INDEX) -->
 
     <footer class="footer">
       <div class="footer-container">
@@ -226,6 +207,25 @@
             biznese. Me bazë në Tiranë, ofrojmë zgjidhje të sigurta në të gjithë
             Shqipërinë.
           </p>
+
+          <div class="footer-socials">
+            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="https://wa.me/355692151480">
+              <i class="fa-brands fa-whatsapp"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Shërbimet</h4>
+
+          <ul class="footer-links">
+            <li>Instalime Elektrike</li>
+            <li>Kamera Sigurie</li>
+            <li>Mirëmbajtje Elektrike</li>
+            <li>Riparime Urgjente</li>
+          </ul>
         </div>
 
         <div class="footer-col">
@@ -234,7 +234,7 @@
           <ul class="footer-contact">
             <li><i class="fa-solid fa-phone"></i> +355 69 21 51 480</li>
             <li><i class="fa-solid fa-envelope"></i> sajaelectric@gmail.com</li>
-            <li><i class="fa-solid fa-location-dot"></i> Tiranë</li>
+            <li><i class="fa-solid fa-location-dot"></i> Rruga Ura, Tiranë</li>
           </ul>
         </div>
       </div>
@@ -266,5 +266,3 @@
     </script>
   </body>
 </html>
-
- 
