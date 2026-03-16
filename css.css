@@ -32,6 +32,7 @@ body {
   --muted: #6b6b6b;
   --white: #fff;
   --container: 1200px;
+  color-scheme: light;
 }
 
 /* container */
@@ -49,7 +50,7 @@ body {
   left: 0;
   right: 0;
   height: 92px;
-  background: #dde1e1; /* WHITE NAVBAR */
+  background: #dde1e1 !important; /* WHITE NAVBAR */
   display: flex;
   align-items: center;
   z-index: 1200;
@@ -68,7 +69,9 @@ body {
   height: 90px;
   object-fit: contain;
   display: block;
-  margin: 0 auto;
+  margin: 0 auto; /* centers logo */
+  filter: none !important;
+  mix-blend-mode: normal !important;
 }
 
 /* --------- BURGER (LEFT, visible on all screens) --------- */
