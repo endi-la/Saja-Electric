@@ -1744,3 +1744,14 @@ body {
     font-size: 11px;
   }
 }
+@media (prefers-color-scheme: dark) {
+  html,
+  body {
+    background: #f6f6f6 !important;
+    color: #222 !important;
+  }
+
+  .header {
+    background: #dde1e1 !important;
+  }
+}
