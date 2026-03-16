@@ -14,7 +14,9 @@
     />
 
     <style>
-      /* PAGE TITLE */
+      /* ========================= */
+      /* PROJECT HERO */
+      /* ========================= */
 
       .project-hero {
         padding: 140px 20px 40px;
@@ -54,26 +56,36 @@
         transform: translateY(-2px);
       }
 
-      /* GALLERY */
+      /* ========================= */
+      /* PROJECT GALLERY */
+      /* ========================= */
 
       .project-gallery {
         padding: 40px 20px 100px;
       }
 
       .gallery-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 30px;
-        max-width: 1400px;
+        max-width: 1200px;
         margin: auto;
+
+        display: grid;
+
+        /* DESKTOP = 3 columns */
+
+        grid-template-columns: repeat(3, 1fr);
+
+        gap: 30px;
       }
 
       .gallery-grid img {
         width: 100%;
-        height: 280px;
+        height: 260px;
         object-fit: cover;
-        border-radius: 12px;
+
+        border-radius: 14px;
+
         cursor: pointer;
+
         transition: 0.3s;
       }
 
@@ -81,24 +93,58 @@
         transform: scale(1.05);
       }
 
+      /* ========================= */
+      /* TABLET */
+      /* ========================= */
+
+      @media (max-width: 900px) {
+        .gallery-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      /* ========================= */
+      /* MOBILE */
+      /* ========================= */
+
+      @media (max-width: 600px) {
+        .gallery-grid {
+          grid-template-columns: repeat(2, 1fr);
+
+          gap: 14px;
+        }
+
+        .gallery-grid img {
+          height: 160px;
+        }
+      }
+
+      /* ========================= */
       /* LIGHTBOX */
+      /* ========================= */
 
       .lightbox {
         position: fixed;
         top: 0;
         left: 0;
+
         width: 100%;
         height: 100%;
-        background: rgba(0, 0, 0, 0.85);
+
+        background: rgba(0, 0, 0, 0.9);
+
         display: none;
+
         align-items: center;
         justify-content: center;
+
         z-index: 9999;
       }
 
       .lightbox img {
         max-width: 90%;
-        max-height: 85%;
+        max-height: 90%;
+
         border-radius: 10px;
       }
 
@@ -126,11 +172,11 @@
     <!-- SIDE MENU -->
 
     <nav id="sideMenu" class="side-menu">
-      <a href="index.html#home">Home</a>
-      <a href="index.html#services">Services</a>
-      <a href="index.html#projects">Projects</a>
-      <a href="index.html#about">About</a>
-      <a href="index.html#contact">Contact</a>
+      <a href="index.html#home">HOME</a>
+      <a href="index.html#services">SERVICES</a>
+      <a href="index.html#projects">PROJECTS</a>
+      <a href="index.html#about">ABOUT</a>
+      <a href="index.html#contact">CONTACT</a>
     </nav>
 
     <main id="mainContent">
@@ -154,6 +200,7 @@
           <img src="images/martin-adams-sq1dNSxyGdU-unsplash.jpg" />
           <img src="images/martin-adams-sq1dNSxyGdU-unsplash.jpg" />
           <img src="images/martin-adams-sq1dNSxyGdU-unsplash.jpg" />
+
           <img src="images/martin-adams-sq1dNSxyGdU-unsplash.jpg" />
           <img src="images/martin-adams-sq1dNSxyGdU-unsplash.jpg" />
           <img src="images/martin-adams-sq1dNSxyGdU-unsplash.jpg" />
@@ -170,29 +217,40 @@
     <!-- FOOTER -->
 
     <footer class="footer">
-      <div class="container footer-grid">
-        <div class="col">
+      <div class="footer-container">
+        <div class="footer-col">
           <img src="images/LOGO-1 copy.png" class="footer-logo" />
-          <p>
-            Kompani profesionale për instalime dhe projekte elektrike. Siguri
-            dhe cilësi në çdo projekt.
+
+          <p class="footer-text">
+            Instalime dhe shërbime elektrike profesionale për banesa dhe
+            biznese. Me bazë në Tiranë, ofrojmë zgjidhje të sigurta në të gjithë
+            Shqipërinë.
           </p>
         </div>
 
-        <div class="col">
+        <div class="footer-col">
           <h4>Kontakt</h4>
-          <p><i class="fa-solid fa-phone"></i> +355 XXX XXX XXX</p>
-          <p><i class="fa-solid fa-envelope"></i> info@sajaelectric.com</p>
-          <p><i class="fa-solid fa-location-dot"></i> Tiranë, Shqipëri</p>
+
+          <ul class="footer-contact">
+            <li><i class="fa-solid fa-phone"></i> +355 69 21 51 480</li>
+            <li><i class="fa-solid fa-envelope"></i> sajaelectric@gmail.com</li>
+            <li><i class="fa-solid fa-location-dot"></i> Tiranë</li>
+          </ul>
         </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 Saja Electric. Të gjitha të drejtat e rezervuara.</p>
       </div>
     </footer>
 
-    <script>
-      /* LIGHTBOX SCRIPT */
+    <script src="javajs.js"></script>
 
+    <script>
       const images = document.querySelectorAll(".gallery-grid img");
+
       const lightbox = document.getElementById("lightbox");
+
       const lightboxImg = document.getElementById("lightbox-img");
 
       images.forEach((img) => {
@@ -206,6 +264,7 @@
         lightbox.classList.remove("active");
       });
     </script>
-    <script src="javajs.js"></script>
   </body>
 </html>
+
+ 
