@@ -66,38 +66,62 @@ body {
 }
 
 /* --------- BURGER (LEFT, visible on all screens) --------- */
+/* --------- BURGER (LEFT) --------- */
+
+/* --------- BURGER --------- */
+
 .burger {
-  position: fixed; /* fixed so it can touch the very left edge */
-  left: 50px; /* final left edge position */
-  top: 4.5%;
+  position: absolute;
+
+  top: 50%;
   transform: translateY(-50%);
-  width: 36px;
-  height: 26px;
+
+  /* desktop position */
+  left: -25%;
+
+  width: 34px;
+  height: 24px;
+
   background: none;
   border: none;
+
   cursor: pointer;
+
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
   padding: 0;
-  z-index: 1400; /* above header & content */
+
+  z-index: 1400;
 }
 
 .burger span {
   display: block;
+
   height: 3px;
   width: 100%;
-  background: #000000; /* burger white */
+
+  background: #000;
+
   border-radius: 3px;
+
   transition:
     transform 0.28s ease,
     opacity 0.18s ease;
-  transform-origin: center;
+}
+
+/* MOBILE FIX */
+
+@media (max-width: 640px) {
+  .burger {
+    left: 12px;
+  }
 }
 
 /* Active -> X (centered) */
 .burger.active span:nth-child(1) {
-  transform: translateY(12px) rotate(45deg);
+  transform: translateY(11px) rotate(45deg);
 }
 .burger.active span:nth-child(2) {
   opacity: 0;
