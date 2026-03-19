@@ -174,7 +174,7 @@ const observer = new IntersectionObserver((entries) => {
       let count = 0;
 
       const update = () => {
-        const increment = target / 50;
+        const increment = target / 200;
 
         if (count < target) {
           count += increment;
