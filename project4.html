@@ -132,6 +132,63 @@
       .lightbox.active {
         display: flex;
       }
+      .project-photo {
+        position: relative;
+        overflow: hidden;
+        border-radius: 14px;
+      }
+
+      .project-photo img {
+        width: 100%;
+        height: 260px;
+        object-fit: cover;
+        display: block;
+        transition: 0.3s;
+      }
+
+      .project-photo::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+        opacity: 1;
+        transition: 0.3s;
+      }
+      .project-photo::after {
+        pointer-events: none;
+      }
+
+      .project-info {
+        position: absolute;
+        bottom: 12px;
+        left: 14px;
+        color: #fff;
+        font-size: 14px;
+        opacity: 1;
+        transform: translateY(10px);
+        transition: 0.3s;
+      }
+
+      .project-photo:hover img {
+        transform: scale(1.05);
+      }
+      @media (max-width: 768px) {
+        .project-info {
+          left: 8px;
+          bottom: 8px;
+          font-size: 11px;
+          padding: 3px 6px;
+          background: rgba(0, 0, 0, 0);
+          border-radius: 6px;
+        }
+        .project-photo::after {
+          pointer-events: none;
+        }
+
+        .project-info {
+          pointer-events: none;
+        }
+      }
     </style>
   </head>
 
@@ -164,10 +221,10 @@
       <section class="project-hero">
         <a href="index.html#projects" class="back-btn">
           <i class="fa-solid fa-arrow-left"></i>
-          Kthehu te Projektet
+          Back to Projects
         </a>
 
-        <h1>Projekt Instalimi Elektrik</h1>
+        <h1>Heb's</h1>
 
         <p>
           Ky projekt përfshin instalime elektrike profesionale për një objekt
@@ -178,13 +235,43 @@
 
       <section class="project-gallery">
         <div class="gallery-grid">
-          <img src="images/martin-adams-sq1dNSxyGdU-unsplash.jpg" />
-          <img src="images/martin-adams-sq1dNSxyGdU-unsplash.jpg" />
-          <img src="images/martin-adams-sq1dNSxyGdU-unsplash.jpg" />
+          <div class="project-photo">
+            <img src="images/project 4 heb's (1).png" />
+            <div class="project-info">
+              <i class="fa-solid fa-location-dot"></i> Ring Center
+            </div>
+          </div>
+          <div class="project-photo">
+            <img src="images/project 4 heb's (8).png" />
+            <div class="project-info">
+              <i class="fa-solid fa-location-dot"></i> Toptani
+            </div>
+          </div>
+          <div class="project-photo">
+            <img src="images/project 4 heb's (5).png" />
+            <div class="project-info">
+              <i class="fa-solid fa-location-dot"></i> Tiranë
+            </div>
+          </div>
 
-          <img src="images/martin-adams-sq1dNSxyGdU-unsplash.jpg" />
-          <img src="images/martin-adams-sq1dNSxyGdU-unsplash.jpg" />
-          <img src="images/martin-adams-sq1dNSxyGdU-unsplash.jpg" />
+          <div class="project-photo">
+            <img src="images/project 4 heb's (7).png" />
+            <div class="project-info">
+              <i class="fa-solid fa-location-dot"></i> Ring Center
+            </div>
+          </div>
+          <div class="project-photo">
+            <img src="images/project 4 heb's (6).png" />
+            <div class="project-info">
+              <i class="fa-solid fa-location-dot"></i> Topani
+            </div>
+          </div>
+          <div class="project-photo">
+            <img src="images/project 4 heb's (4).png" />
+            <div class="project-info">
+              <i class="fa-solid fa-location-dot"></i> Tiranë
+            </div>
+          </div>
         </div>
       </section>
     </main>
@@ -209,7 +296,10 @@
           </p>
 
           <div class="footer-socials">
-            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            <a
+              href="#https://www.instagram.com/sajaelectric?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+              ><i class="fa-brands fa-instagram"></i
+            ></a>
             <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
             <a href="https://wa.me/355692151480">
               <i class="fa-brands fa-whatsapp"></i>
@@ -234,7 +324,7 @@
           <ul class="footer-contact">
             <li><i class="fa-solid fa-phone"></i> +355 69 21 51 480</li>
             <li><i class="fa-solid fa-envelope"></i> sajaelectric@gmail.com</li>
-            <li><i class="fa-solid fa-location-dot"></i> Rruga Ura, Tiranë</li>
+            <li><i class="fa-solid fa-location-dot"></i> Tiranë, Tiranë</li>
           </ul>
         </div>
       </div>
