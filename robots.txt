@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://sajaelectric.al/sitemap.xml

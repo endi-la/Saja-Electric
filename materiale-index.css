@@ -1,0 +1,46 @@
+/* Catalogue styles: scoped; loaded once after css.css on every page. */
+#materiale { background: var(--paper); }
+#materiale .search-area { display: grid; grid-template-columns: auto 1fr; align-items: center; gap: 24px; margin-bottom: 32px; padding: 20px; background: var(--brand); border-radius: var(--radius); }
+#materiale .search-area label { font-weight: 600; font-size: 14px; }
+#materiale .catalog-layout { display: grid; grid-template-columns: 240px minmax(0,1fr); align-items: start; gap: 28px; }
+#materiale .catalog-sidebar { border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; background: white; }
+#materiale .catalog-sidebar h2 { font-size: 20px; padding: 20px; background: var(--surface); }
+#materiale .category-list { display: grid; gap: 4px; padding: 10px; }
+#materiale .category-button { display: flex; align-items: center; justify-content: space-between; gap: 12px; width: 100%; min-height: 48px; padding: 12px; background: transparent; color: var(--ink); border: 0; border-radius: 8px; text-align: left; font-size: 13px; }
+#materiale .category-button:hover { background: var(--surface); }
+#materiale .category-button.active { background: var(--ink); color: white; }
+#materiale .category-count { font-size: 11px; }
+#materiale .catalog-main { min-width: 0; }
+#materiale .catalog-toolbar { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px; margin-bottom: 24px; }
+#materiale .catalog-toolbar h2 { font-size: 24px; margin-bottom: 8px; }
+#materiale .result-count { color: var(--muted); font-size: 13px; }
+#materiale .sort-label { display: flex; gap: 10px; align-items: center; font-size: 12px; }
+#materiale .sort-select { width: auto; max-width: 100%; font-size: 14px; }
+#materiale .products-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 18px; }
+#materiale .product-card { min-width: 0; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; background: white; box-shadow: var(--shadow); transition: transform .3s var(--ease); }
+#materiale .product-card:hover { transform: translateY(-3px); }
+#materiale .product-image { margin: 12px; aspect-ratio: 1; border: 1px solid var(--line); background: var(--surface); border-radius: 10px; overflow: hidden; }
+#materiale .product-image img { width: 100%; height: 100%; object-fit: contain; }
+#materiale .product-info { padding: 6px 16px 20px; }
+#materiale .product-number, #materiale .product-category { font-size: 12px; color: var(--muted); }
+#materiale .product-info h3 { font-size: 17px; margin-block: 8px; overflow-wrap: anywhere; }
+#materiale .product-inquiry { display: flex; align-items: center; min-height: 44px; font-size: 13px; font-weight: 600; margin-top: 12px; }
+#materiale .empty-results { padding: 32px; background: var(--surface); border-radius: var(--radius); }
+#materiale .reset-button { min-height: 44px; padding: 10px 16px; background: var(--ink); color: white; border: 0; border-radius: 8px; margin-top: 16px; }
+#materiale .pagination { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 28px; }
+#materiale .pagination button { min-width: 44px; min-height: 44px; padding: 8px; background: white; color: var(--ink); border: 1px solid var(--line); border-radius: 8px; }
+#materiale .pagination button.active { background: var(--ink); color: white; }
+#materiale .pagination-gap { align-self: center; }
+@media (max-width: 1000px) {
+  #materiale .products-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  #materiale .catalog-layout { grid-template-columns: 210px minmax(0,1fr); gap: 20px; }
+}
+@media (max-width: 700px) {
+  #materiale .catalog-layout { grid-template-columns: 1fr; }
+  #materiale .search-area { grid-template-columns: 1fr; gap: 8px; }
+  #materiale .category-list { display: flex; overflow-x: auto; }
+  #materiale .category-button { flex-shrink: 0; width: auto; white-space: nowrap; }
+  #materiale .products-grid { gap: 12px; }
+  #materiale .product-info { padding-inline: 12px; }
+  #materiale .product-info h3 { font-size: 15px; }
+}
