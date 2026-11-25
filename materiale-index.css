@@ -1,9 +1,9 @@
-/* Catalogue styles: scoped; loaded once after css.css on every page. */
+/* Katalogu: përdoret në kryefaqe dhe te materiale.html. */
 #materiale { background: var(--paper); }
 #materiale .search-area { display: grid; grid-template-columns: auto 1fr; align-items: center; gap: 24px; margin-bottom: 32px; padding: 20px; background: var(--brand); border-radius: var(--radius); }
 #materiale .search-area label { font-weight: 600; font-size: 14px; }
 #materiale .catalog-layout { display: grid; grid-template-columns: 240px minmax(0,1fr); align-items: start; gap: 28px; }
-#materiale .catalog-sidebar { border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; background: white; }
+#materiale .catalog-sidebar { min-width:0; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; background: white; }
 #materiale .catalog-sidebar h2 { font-size: 20px; padding: 20px; background: var(--surface); }
 #materiale .category-list { display: grid; gap: 4px; padding: 10px; }
 #materiale .category-button { display: flex; align-items: center; justify-content: space-between; gap: 12px; width: 100%; min-height: 48px; padding: 12px; background: transparent; color: var(--ink); border: 0; border-radius: 8px; text-align: left; font-size: 13px; }
@@ -31,12 +31,29 @@
 #materiale .pagination button { min-width: 44px; min-height: 44px; padding: 8px; background: white; color: var(--ink); border: 1px solid var(--line); border-radius: 8px; }
 #materiale .pagination button.active { background: var(--ink); color: white; }
 #materiale .pagination-gap { align-self: center; }
+#materiale .catalog-prompt { display:grid; grid-template-columns:minmax(0,1.55fr) minmax(105px,.85fr); border-radius:var(--radius); overflow:hidden; border:1px solid var(--line); background:var(--surface); }
+#materiale .stock-copy { align-self:center; padding:clamp(22px,3vw,42px); }
+#materiale .stock-copy .eyebrow { margin-bottom:10px; }
+#materiale .stock-copy h3 { font-size:clamp(22px,2.55vw,34px); }
+#materiale .stock-copy p { margin:14px 0 20px; color:var(--muted); max-width:45ch; }
+#materiale .stock-detail { min-width:0; position:relative; overflow:hidden; }
+#materiale .stock-detail picture, #materiale .stock-detail img { width:100%; height:100%; position:absolute; inset:0; object-fit:cover; }
+#materiale .catalog-fallback { padding:24px; background:var(--surface); border-radius:var(--radius); border:1px solid var(--line); }
+#materiale .fallback-categories { display:flex; flex-wrap:wrap; gap:8px; margin-top:16px; }
+#materiale .fallback-categories a, #materiale .query-inquiry { display:inline-flex; align-items:center; min-height:44px; padding:8px 14px; }
+#materiale .fallback-categories a { background:white; border:1px solid var(--line); border-radius:10px; }
+#materiale .without-photo { display:grid; place-items:center; }
+#materiale .without-photo::before { content:""; width:30px; height:30px; border:1px solid #8c9798; border-radius:5px; background:linear-gradient(145deg,transparent 51%,#8c9798 52%,#8c9798 54%,transparent 55%); }
+@media (max-width:850px) {
+  #materiale .catalog-prompt { grid-template-columns:1fr; }
+  #materiale .stock-detail { display:none; }
+}
 @media (max-width: 1000px) {
   #materiale .products-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
   #materiale .catalog-layout { grid-template-columns: 210px minmax(0,1fr); gap: 20px; }
 }
 @media (max-width: 700px) {
-  #materiale .catalog-layout { grid-template-columns: 1fr; }
+  #materiale .catalog-layout { grid-template-columns: minmax(0,1fr); }
   #materiale .search-area { grid-template-columns: 1fr; gap: 8px; }
   #materiale .category-list { display: flex; overflow-x: auto; }
   #materiale .category-button { flex-shrink: 0; width: auto; white-space: nowrap; }
@@ -44,3 +61,16 @@
   #materiale .product-info { padding-inline: 12px; }
   #materiale .product-info h3 { font-size: 15px; }
 }
+
+/* Galeria e produkteve */
+.saja-gallery-trigger { display:block; width:100%; height:100%; padding:0; border:0; background:transparent; cursor:zoom-in; }
+.saja-gallery-trigger:focus-visible, .saja-product-gallery button:focus-visible { outline:3px solid #2364aa; outline-offset:2px; }
+.saja-product-gallery { width:min(680px,92vw); max-height:90vh; overflow:auto; padding:20px; border:0; border-radius:12px; background:#fff; color:#222; margin:auto; }
+.saja-product-gallery::backdrop { background:rgba(0,0,0,.72); }
+.saja-gallery-close { display:block; margin-left:auto; padding:8px 14px; cursor:pointer; border:1px solid #aaa; border-radius:6px; background:#eee; color:#222; }
+.saja-product-gallery h3 { font-size:1.1rem; margin:10px 0; }
+.saja-gallery-main { display:block; width:100%; height:min(48vh,440px); object-fit:contain; background:#f5f5f5; }
+.saja-gallery-thumbs { display:flex; gap:8px; justify-content:center; margin-top:12px; }
+.saja-gallery-thumbs button { width:23%; max-width:95px; padding:3px; border:2px solid transparent; background:#f5f5f5; border-radius:5px; cursor:pointer; }
+.saja-gallery-thumbs button[aria-pressed="true"] { border-color:#222; }
+.saja-gallery-thumbs img { display:block; width:100%; aspect-ratio:1; object-fit:contain; }

@@ -7,12 +7,18 @@ document.addEventListener("DOMContentLoaded", () => {
       typeof product.name === "string" && product.name.trim()
     );
     const root = document.getElementById("materiale");
-    const enabled = window.SAJA_SHOW_CATALOG === true && products.length > 0;
+    const enabled = window.SAJA_SHOW_CATALOG !== false;
     document.querySelectorAll("[data-catalog-link]").forEach(link => { link.hidden = !enabled; });
     document.querySelectorAll("[data-catalog-unavailable]").forEach(el => { el.hidden = enabled; });
-    if (!root || !enabled) return;
-    const note = root.querySelector(".demo-note");
-    if (note) note.hidden = true;
+    if (!root) return;
+    root.hidden = !enabled;
+    if (!enabled || !Array.isArray(window.SAJA_CATEGORIES)) return;
+    const controls = root.querySelector("[data-catalog-controls]");
+    const fallback = root.querySelector("[data-catalog-fallback]");
+    const prompt = root.querySelector("[data-stock-prompt]");
+    const titlePrompt = root.querySelector("[data-prompt-title]");
+    const inquiryPrompt = root.querySelector("[data-prompt-link]");
+    const sortBox = root.querySelector(".sort-label");
 
     const categoryList = document.getElementById("categoryList");
     const searchInput = document.getElementById("materialSearch");
@@ -56,7 +62,8 @@ document.addEventListener("DOMContentLoaded", () => {
       amount.className = "category-count";
       amount.textContent = count;
 
-      button.append(label, amount);
+      button.append(label);
+      if (count > 0) button.append(amount);
 
       button.addEventListener("click", () => {
         selectedCategory = id;
@@ -130,6 +137,48 @@ document.addEventListener("DOMContentLoaded", () => {
       return filtered;
     }
 
+    // Galeria e produktit: dialog standard, i përdorshëm edhe me tastierë.
+    function openProductGallery(product, trigger) {
+      const photos = product.images.length ? product.images : [product.image];
+      const dialog = document.createElement("dialog");
+      dialog.className = "saja-product-gallery";
+      const heading = document.createElement("h3");
+      heading.textContent = product.name;
+      heading.id = "saja-gallery-title";
+      dialog.setAttribute("aria-labelledby", heading.id);
+      const close = document.createElement("button");
+      close.type = "button"; close.textContent = "Mbyll ×";
+      close.className = "saja-gallery-close";
+      close.onclick = () => dialog.close();
+      const main = document.createElement("img");
+      main.className = "saja-gallery-main";
+      const thumbs = document.createElement("div");
+      thumbs.className = "saja-gallery-thumbs";
+      let current = 0;
+      function show(index) {
+        current = (index + photos.length) % photos.length;
+        main.src = photos[current];
+        main.alt = product.name + " – foto " + (current + 1);
+        Array.from(thumbs.children).forEach((b, i) => b.setAttribute("aria-pressed", String(i === current)));
+      }
+      photos.forEach((src, index) => {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.setAttribute("aria-label", "Shiko foton " + (index + 1));
+        const img = document.createElement("img"); img.src = src; img.alt = "";
+        button.append(img); button.onclick = () => show(index); thumbs.append(button);
+      });
+      dialog.append(close, heading, main, thumbs);
+      dialog.addEventListener("keydown", e => {
+        if (e.key === "ArrowRight" || e.key === "ArrowLeft") {
+          e.preventDefault(); show(current + (e.key === "ArrowRight" ? 1 : -1));
+        }
+      });
+      dialog.addEventListener("close", () => { dialog.remove(); trigger.focus(); }, {once: true});
+      dialog.addEventListener("click", e => { if (e.target === dialog) { const r = dialog.getBoundingClientRect(); if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) dialog.close(); } });
+      document.body.append(dialog); show(0); dialog.showModal(); close.focus();
+    }
+
     function createProductCard(product) {
       const card = document.createElement("article");
       card.className = "product-card";
@@ -148,9 +197,15 @@ document.addEventListener("DOMContentLoaded", () => {
         image.height = 600;
 
         // Nëse mungon skedari, ruaj kornizën pa ikonë fotografie të prishur.
-        image.addEventListener("error", () => image.remove(), { once: true });
+        image.addEventListener("error", () => { image.remove(); photo.classList.add("without-photo"); }, { once: true });
 
-        photo.append(image);
+        const galleryButton = document.createElement("button");
+        galleryButton.type = "button";
+        galleryButton.className = "saja-gallery-trigger";
+        galleryButton.setAttribute("aria-label", "Shiko fotot e " + product.name);
+        galleryButton.append(image);
+        galleryButton.onclick = () => openProductGallery(product, galleryButton);
+        photo.append(galleryButton);
       }
 
       const info = document.createElement("div");
@@ -171,10 +226,12 @@ document.addEventListener("DOMContentLoaded", () => {
       const inquiry = document.createElement("a");
       inquiry.className = "product-inquiry";
       inquiry.textContent = "Pyet në WhatsApp";
+      inquiry.setAttribute("aria-label", "Pyet në WhatsApp për " + product.name);
       inquiry.href = "https://wa.me/355692151480?text=" + encodeURIComponent(
         "Përshëndetje! Interesohem për: " + product.name + " (Nr. " + product.id + ")."
       );
       info.append(inquiry);
+      if (!product.image) photo.classList.add("without-photo");
       card.append(photo, info);
 
       return card;
@@ -306,7 +363,29 @@ document.addEventListener("DOMContentLoaded", () => {
         ? `${start + 1}–${start + visibleProducts.length} nga ${filtered.length} materiale`
         : "0 materiale";
 
-      emptyResults.hidden = filtered.length !== 0;
+      const isSearch = Boolean(searchInput.value.trim());
+      if (isSearch && !filtered.length) {
+        root.querySelector("[data-query-link]").href = "https://wa.me/355692151480?text=" + encodeURIComponent(
+          "Përshëndetje Saja Electric! Po kërkoj " + searchInput.value.trim() +
+          (selectedCategory === "all" ? "." : " në kategorinë " + categoryName(selectedCategory) + ".")
+        );
+      }
+      const waiting = !filtered.length && !isSearch;
+      emptyResults.hidden = filtered.length > 0 || waiting;
+      prompt.hidden = !waiting;
+      productsGrid.hidden = !filtered.length;
+      sortBox.hidden = !products.length;
+      resultCount.hidden = waiting;
+      pagination.hidden = totalPages < 2;
+      if (waiting) {
+        const specific = selectedCategory !== "all";
+        const label = specific ? categoryName(selectedCategory) : "materialet elektrike dhe ndriçimin";
+        titlePrompt.textContent = specific ? "Po shtojmë artikujt në këtë kategori." : "Katalogu po plotësohet.";
+        inquiryPrompt.href = "https://wa.me/355692151480?text=" + encodeURIComponent(
+          "Përshëndetje Saja Electric! Dua informacion për " + label + "."
+        );
+        inquiryPrompt.setAttribute("aria-label", "Pyet në WhatsApp për " + label);
+      }
 
       renderPagination(totalPages);
     }
@@ -340,7 +419,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     renderCategories();
     renderProducts();
-    root.hidden = false;
+    controls.hidden = false;
+    fallback.hidden = true;
     document.dispatchEvent(new Event("saja:catalog"));
   
 });
